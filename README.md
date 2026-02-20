@@ -4,7 +4,18 @@ An AI-powered customer support agent for financial services, built with Claude b
 
 Novus Assist demonstrates how AI agents can handle complex banking interactions — from transaction disputes to account cancellation retention — while maintaining trust, safety, and compliance.
 
+**Design inspired by [Sierra.ai](https://sierra.ai)** — dark gradient mesh background, frosted glass UI, and rich data cards.
+
 [**Try the live demo →**](#)
+
+---
+
+## Demo Credentials
+
+| Name | PIN |
+|------|-----|
+| Sarah Chen | 4829 |
+| Alessandro Condorelli | 3322 |
 
 ---
 
@@ -29,16 +40,27 @@ Balance checks, fee explanations, payment due dates, transaction history, and ac
 
 ---
 
+## Design
+
+The interface features a Sierra.ai-inspired dark theme:
+
+- **Gradient mesh background** — deep navy transitioning to dark teal with subtle purple accents
+- **Frosted glass cards** — `backdrop-filter: blur()` with semi-transparent borders
+- **Rich data cards** — transactions, account details, and products render as visual cards within the chat
+- **Smooth animations** — messages fade in and slide up, typing indicator pulses
+- **State tracking banner** — shows verification status and actions taken in real time
+
+---
+
 ## Guardrails & Safety
 
 The agent implements enterprise-grade safety measures:
 
-- **Identity verification** — The agent verifies the customer's name and PIN before sharing any account details
+- **Identity verification** — The agent verifies the customer's name (fuzzy matching) and PIN before sharing any account details
 - **Information security** — Full account numbers and security credentials are never exposed
 - **Confirmation before action** — Destructive actions (blocking a card, closing an account) require explicit confirmation
 - **Scope boundaries** — The agent politely redirects off-topic requests back to financial services
 - **Human escalation** — The agent proactively offers to connect customers with human specialists for complex issues
-- **State tracking** — A visual status banner shows verification state and actions taken in real time
 
 ---
 
@@ -63,19 +85,15 @@ The agent implements enterprise-grade safety measures:
 ### Setup
 
 ```bash
-# Clone the repository
 git clone https://github.com/yourusername/novus-assist.git
 cd novus-assist
 
-# Install dependencies
 npm install
 cd client && npm install && cd ..
 
-# Configure environment
 cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY
+# Add your ANTHROPIC_API_KEY to .env
 
-# Start development servers
 npm run dev
 ```
 
@@ -83,10 +101,10 @@ The app will be available at `http://localhost:5173`.
 
 ### Quick Test
 
-Once running, try these conversations:
-1. Click **"I don't recognise a charge"** → Provide your name as "Sarah Chen" and PIN as "4829" when asked
+1. Click **"I don't recognise a charge"** → Verify as "Alessandro Condorelli" with PIN "3322"
 2. Click **"I want to cancel my account"** → Watch the agent try to retain you
-3. Click **"Is this transaction fraudulent?"** → The agent will walk through verification steps
+3. Click **"Is this transaction fraudulent?"** → The agent walks through verification steps
+4. Click **"Help me choose a savings product"** → Get a personalised product recommendation
 
 ---
 
@@ -96,20 +114,28 @@ Once running, try these conversations:
 novus-assist/
 ├── client/                 # React frontend
 │   ├── src/
-│   │   ├── components/     # UI components
-│   │   ├── App.jsx         # Main app with chat logic
-│   │   └── index.css       # Tailwind + custom styles
+│   │   ├── components/
+│   │   │   ├── cards/      # Rich UI cards (Transaction, Account, Product)
+│   │   │   ├── Header.jsx
+│   │   │   ├── StatusBanner.jsx
+│   │   │   ├── ChatMessage.jsx
+│   │   │   ├── TypingIndicator.jsx
+│   │   │   ├── SuggestionChips.jsx
+│   │   │   ├── ChatInput.jsx
+│   │   │   └── DemoCredentials.jsx
+│   │   ├── App.jsx
+│   │   └── index.css       # Gradient mesh + frosted glass styles
 │   └── package.json
-├── server/                 # Express backend
-│   ├── index.js            # Server entry point
-│   └── chat.js             # Claude API integration + system prompt
+├── server/
+│   ├── index.js            # Express server
+│   └── chat.js             # Claude API + system prompt + card parsing
 ├── api/                    # Vercel serverless functions
 │   └── chat.js
 ├── data/                   # Mock database
 │   ├── customers.json
 │   ├── transactions.json
 │   └── products.json
-├── vercel.json             # Vercel deployment config
+├── vercel.json
 └── package.json
 ```
 
@@ -118,13 +144,8 @@ novus-assist/
 ## Deploy to Vercel
 
 ```bash
-# Install Vercel CLI
 npm i -g vercel
-
-# Deploy
 vercel
-
-# Set environment variable
 vercel env add ANTHROPIC_API_KEY
 ```
 
@@ -139,6 +160,7 @@ Modern customer support isn't just about answering questions — it's about unde
 - **Contextual reasoning** — The agent understands when "I don't recognise this charge" might just be a confusing merchant name vs. actual fraud
 - **Persuasive retention** — Instead of processing cancellations immediately, the agent uncovers pain points and offers tailored solutions
 - **Safety-first design** — Identity verification, action confirmation, and scope boundaries are built into every interaction
+- **Rich UI** — Structured data cards bring financial information to life within the conversation
 - **State management** — The conversation tracks verification status and actions taken, visible to the user in real time
 
 Inspired by [Sierra AI's](https://sierra.ai) approach to enterprise customer experience agents.
