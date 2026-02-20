@@ -1,0 +1,138 @@
+import { useState, useRef, useEffect } from 'react';
+import Header from './components/Header';
+import StatusBanner from './components/StatusBanner';
+import ChatMessage from './components/ChatMessage';
+import TypingIndicator from './components/TypingIndicator';
+import SuggestionChips from './components/SuggestionChips';
+import ChatInput from './components/ChatInput';
+import DemoCredentials from './components/DemoCredentials';
+
+const WELCOME_MESSAGE = {
+  role: 'assistant',
+  content:
+    "Hi there! I'm the Novus AI assistant. I can help you with your account, transactions, disputes, and more. How can I help you today?",
+  cards: [],
+};
+
+const API_URL = '/api/chat';
+
+export default function App() {
+  const [messages, setMessages] = useState([WELCOME_MESSAGE]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [statuses, setStatuses] = useState([{ type: 'unverified', label: 'Unverified' }]);
+  const messagesEndRef = useRef(null);
+  const hasUserSent = messages.some((m) => m.role === 'user');
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isLoading]);
+
+  async function sendMessage(text) {
+    if (!text.trim() || isLoading) return;
+
+    const userMessage = { role: 'user', content: text.trim(), cards: [] };
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const apiMessages = updatedMessages.map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: apiMessages }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || `Server error (${res.status})`);
+      }
+
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', content: data.response, cards: data.cards || [] },
+      ]);
+
+      if (data.actions?.length) {
+        setStatuses((prev) => {
+          const newStatuses = [...prev];
+          for (const action of data.actions) {
+            if (
+              action.type === 'VERIFIED' &&
+              !newStatuses.some((s) => s.type === 'verified')
+            ) {
+              const idx = newStatuses.findIndex((s) => s.type === 'unverified');
+              if (idx !== -1) newStatuses.splice(idx, 1);
+              newStatuses.unshift({ type: 'verified', label: 'Identity Verified' });
+            } else if (!newStatuses.some((s) => s.type === action.type)) {
+              newStatuses.push({ type: action.type, label: action.label });
+            }
+          }
+          return newStatuses;
+        });
+      }
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: `I'm sorry, I encountered an issue: ${err.message}. Please try again.`,
+          cards: [],
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    sendMessage(input);
+  }
+
+  return (
+    <div className="flex flex-col h-screen bg-mesh text-white">
+      <Header />
+      <StatusBanner statuses={statuses} />
+      <DemoCredentials />
+
+      <main className="flex-1 overflow-y-auto chat-scroll">
+        <div className="max-w-3xl mx-auto px-4 py-6 space-y-1">
+          {messages.map((msg, i) => (
+            <ChatMessage key={i} message={msg} />
+          ))}
+          {isLoading && <TypingIndicator />}
+          <div ref={messagesEndRef} />
+        </div>
+      </main>
+
+      {!hasUserSent && (
+        <div className="max-w-3xl mx-auto w-full px-4 pb-2">
+          <SuggestionChips onSelect={sendMessage} />
+        </div>
+      )}
+
+      <footer className="border-t border-white/5">
+        <div className="max-w-3xl mx-auto px-4 py-3">
+          <ChatInput
+            value={input}
+            onChange={setInput}
+            onSubmit={handleSubmit}
+            disabled={isLoading}
+          />
+          <p className="text-[11px] text-white/25 text-center mt-2">
+            This is a demo. No real financial data is used.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}

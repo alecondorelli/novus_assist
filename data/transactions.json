@@ -1,0 +1,635 @@
+[
+  {
+    "id": "txn_001",
+    "customerId": "cust_001",
+    "date": "2026-02-18",
+    "merchant": "Tesco Express",
+    "amount": 34.5,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_002",
+    "customerId": "cust_001",
+    "date": "2026-02-17",
+    "merchant": "TFL - Contactless",
+    "amount": 6.8,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_003",
+    "customerId": "cust_001",
+    "date": "2026-02-16",
+    "merchant": "AMZN MKTP UK*2R8HT1KQ0",
+    "amount": 89.99,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed",
+    "merchantDisplayName": "Amazon Marketplace"
+  },
+  {
+    "id": "txn_004",
+    "customerId": "cust_001",
+    "date": "2026-02-15",
+    "merchant": "Netflix.com",
+    "amount": 15.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  },
+  {
+    "id": "txn_005",
+    "customerId": "cust_001",
+    "date": "2026-02-14",
+    "merchant": "Pret A Manger",
+    "amount": 8.45,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_006",
+    "customerId": "cust_001",
+    "date": "2026-02-13",
+    "merchant": "SP DIGITALOCEAN.COM",
+    "amount": 142.0,
+    "currency": "GBP",
+    "category": "Technology",
+    "status": "flagged",
+    "merchantDisplayName": "DigitalOcean Cloud Services"
+  },
+  {
+    "id": "txn_007",
+    "customerId": "cust_001",
+    "date": "2026-02-12",
+    "merchant": "Sainsbury's",
+    "amount": 67.23,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_008",
+    "customerId": "cust_001",
+    "date": "2026-02-11",
+    "merchant": "Apple.com/bill",
+    "amount": 9.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  },
+  {
+    "id": "txn_009",
+    "customerId": "cust_001",
+    "date": "2026-02-10",
+    "merchant": "WH Smith",
+    "amount": 12.5,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed"
+  },
+  {
+    "id": "txn_010",
+    "customerId": "cust_001",
+    "date": "2026-02-09",
+    "merchant": "PAYPAL *STEAMGAMES",
+    "amount": 49.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed",
+    "merchantDisplayName": "Steam via PayPal"
+  },
+  {
+    "id": "txn_011",
+    "customerId": "cust_001",
+    "date": "2026-02-08",
+    "merchant": "Shell Petrol Station",
+    "amount": 55.0,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_012",
+    "customerId": "cust_001",
+    "date": "2026-02-07",
+    "merchant": "Uber *Trip",
+    "amount": 18.4,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_013",
+    "customerId": "cust_001",
+    "date": "2026-02-06",
+    "merchant": "Costa Coffee",
+    "amount": 4.65,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_014",
+    "customerId": "cust_001",
+    "date": "2026-02-05",
+    "merchant": "Gymbox Ltd",
+    "amount": 52.0,
+    "currency": "GBP",
+    "category": "Health & Fitness",
+    "status": "completed"
+  },
+  {
+    "id": "txn_015",
+    "customerId": "cust_001",
+    "date": "2026-02-04",
+    "merchant": "GOOGLE *Cloud",
+    "amount": 214.38,
+    "currency": "GBP",
+    "category": "Technology",
+    "status": "completed",
+    "merchantDisplayName": "Google Cloud Platform"
+  },
+  {
+    "id": "txn_016",
+    "customerId": "cust_001",
+    "date": "2026-02-03",
+    "merchant": "Boots",
+    "amount": 23.8,
+    "currency": "GBP",
+    "category": "Health & Fitness",
+    "status": "completed"
+  },
+  {
+    "id": "txn_017",
+    "customerId": "cust_001",
+    "date": "2026-02-02",
+    "merchant": "FOREIGN_TXN_SGP*GRAB",
+    "amount": 312.0,
+    "currency": "GBP",
+    "category": "Travel",
+    "status": "flagged",
+    "merchantDisplayName": "Grab (Singapore)"
+  },
+  {
+    "id": "txn_018",
+    "customerId": "cust_002",
+    "date": "2026-02-18",
+    "merchant": "Lidl",
+    "amount": 42.15,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_019",
+    "customerId": "cust_002",
+    "date": "2026-02-17",
+    "merchant": "TFL - Contactless",
+    "amount": 3.4,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_020",
+    "customerId": "cust_002",
+    "date": "2026-02-16",
+    "merchant": "Spotify UK",
+    "amount": 10.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  },
+  {
+    "id": "txn_021",
+    "customerId": "cust_002",
+    "date": "2026-02-15",
+    "merchant": "Greggs",
+    "amount": 5.6,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_022",
+    "customerId": "cust_002",
+    "date": "2026-02-14",
+    "merchant": "AMZN MKTP UK*5G2JK9RT1",
+    "amount": 24.99,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed",
+    "merchantDisplayName": "Amazon Marketplace"
+  },
+  {
+    "id": "txn_023",
+    "customerId": "cust_002",
+    "date": "2026-02-13",
+    "merchant": "Nando's",
+    "amount": 32.8,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_024",
+    "customerId": "cust_002",
+    "date": "2026-02-12",
+    "merchant": "PAYPAL *EBAYPURCHASE",
+    "amount": 189.99,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "pending",
+    "merchantDisplayName": "eBay via PayPal"
+  },
+  {
+    "id": "txn_025",
+    "customerId": "cust_002",
+    "date": "2026-02-11",
+    "merchant": "BP Petrol",
+    "amount": 48.5,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_026",
+    "customerId": "cust_002",
+    "date": "2026-02-10",
+    "merchant": "JD Sports",
+    "amount": 79.99,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed"
+  },
+  {
+    "id": "txn_027",
+    "customerId": "cust_002",
+    "date": "2026-02-09",
+    "merchant": "Aldi",
+    "amount": 38.92,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_028",
+    "customerId": "cust_002",
+    "date": "2026-02-08",
+    "merchant": "FOREIGN_TXN_NGA*FLUTTERWAVE",
+    "amount": 450.0,
+    "currency": "GBP",
+    "category": "Transfer",
+    "status": "flagged",
+    "merchantDisplayName": "Flutterwave (Nigeria)"
+  },
+  {
+    "id": "txn_029",
+    "customerId": "cust_002",
+    "date": "2026-02-07",
+    "merchant": "Deliveroo",
+    "amount": 22.4,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_030",
+    "customerId": "cust_002",
+    "date": "2026-02-06",
+    "merchant": "Sky UK",
+    "amount": 43.0,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  },
+  {
+    "id": "txn_031",
+    "customerId": "cust_002",
+    "date": "2026-02-05",
+    "merchant": "PureGym",
+    "amount": 24.99,
+    "currency": "GBP",
+    "category": "Health & Fitness",
+    "status": "completed"
+  },
+  {
+    "id": "txn_032",
+    "customerId": "cust_002",
+    "date": "2026-02-04",
+    "merchant": "Marks & Spencer",
+    "amount": 56.7,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_033",
+    "customerId": "cust_003",
+    "date": "2026-02-18",
+    "merchant": "Asda",
+    "amount": 28.45,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_034",
+    "customerId": "cust_003",
+    "date": "2026-02-17",
+    "merchant": "Primark",
+    "amount": 31.0,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed"
+  },
+  {
+    "id": "txn_035",
+    "customerId": "cust_003",
+    "date": "2026-02-16",
+    "merchant": "Uber Eats",
+    "amount": 19.8,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_036",
+    "customerId": "cust_003",
+    "date": "2026-02-15",
+    "merchant": "Disney+",
+    "amount": 7.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  },
+  {
+    "id": "txn_037",
+    "customerId": "cust_003",
+    "date": "2026-02-14",
+    "merchant": "Starbucks",
+    "amount": 5.2,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_038",
+    "customerId": "cust_003",
+    "date": "2026-02-13",
+    "merchant": "AMZN MKTP UK*8P3QW7YN5",
+    "amount": 156.0,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "pending",
+    "merchantDisplayName": "Amazon Marketplace"
+  },
+  {
+    "id": "txn_039",
+    "customerId": "cust_003",
+    "date": "2026-02-12",
+    "merchant": "National Rail",
+    "amount": 45.6,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_040",
+    "customerId": "cust_003",
+    "date": "2026-02-11",
+    "merchant": "Holland & Barrett",
+    "amount": 18.9,
+    "currency": "GBP",
+    "category": "Health & Fitness",
+    "status": "completed"
+  },
+  {
+    "id": "txn_041",
+    "customerId": "cust_003",
+    "date": "2026-02-10",
+    "merchant": "Waterstones",
+    "amount": 12.99,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed"
+  },
+  {
+    "id": "txn_042",
+    "customerId": "cust_003",
+    "date": "2026-02-09",
+    "merchant": "Zara",
+    "amount": 69.99,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed"
+  },
+  {
+    "id": "txn_043",
+    "customerId": "cust_003",
+    "date": "2026-02-08",
+    "merchant": "Tesco Express",
+    "amount": 15.6,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_044",
+    "customerId": "cust_003",
+    "date": "2026-02-07",
+    "merchant": "UNKNOWN_MERCHANT_4829",
+    "amount": 299.99,
+    "currency": "GBP",
+    "category": "Unknown",
+    "status": "flagged"
+  },
+  {
+    "id": "txn_045",
+    "customerId": "cust_003",
+    "date": "2026-02-06",
+    "merchant": "Boots",
+    "amount": 9.5,
+    "currency": "GBP",
+    "category": "Health & Fitness",
+    "status": "completed"
+  },
+  {
+    "id": "txn_046",
+    "customerId": "cust_003",
+    "date": "2026-02-05",
+    "merchant": "McDonald's",
+    "amount": 8.99,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_047",
+    "customerId": "cust_003",
+    "date": "2026-02-04",
+    "merchant": "Three Mobile",
+    "amount": 22.0,
+    "currency": "GBP",
+    "category": "Bills",
+    "status": "completed"
+  },
+  {
+    "id": "txn_048",
+    "customerId": "cust_004",
+    "date": "2026-02-19",
+    "merchant": "Waitrose",
+    "amount": 62.3,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_049",
+    "customerId": "cust_004",
+    "date": "2026-02-18",
+    "merchant": "TFL - Contactless",
+    "amount": 8.5,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_050",
+    "customerId": "cust_004",
+    "date": "2026-02-17",
+    "merchant": "AMZN MKTP UK*7K4LP2QN9",
+    "amount": 134.99,
+    "currency": "GBP",
+    "category": "Shopping",
+    "status": "completed",
+    "merchantDisplayName": "Amazon Marketplace"
+  },
+  {
+    "id": "txn_051",
+    "customerId": "cust_004",
+    "date": "2026-02-16",
+    "merchant": "Spotify UK",
+    "amount": 10.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  },
+  {
+    "id": "txn_052",
+    "customerId": "cust_004",
+    "date": "2026-02-15",
+    "merchant": "Dishoom",
+    "amount": 78.5,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_053",
+    "customerId": "cust_004",
+    "date": "2026-02-14",
+    "merchant": "SP VERCEL.COM",
+    "amount": 20.0,
+    "currency": "GBP",
+    "category": "Technology",
+    "status": "completed",
+    "merchantDisplayName": "Vercel Inc."
+  },
+  {
+    "id": "txn_054",
+    "customerId": "cust_004",
+    "date": "2026-02-13",
+    "merchant": "Apple.com/bill",
+    "amount": 6.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  },
+  {
+    "id": "txn_055",
+    "customerId": "cust_004",
+    "date": "2026-02-12",
+    "merchant": "Pret A Manger",
+    "amount": 7.85,
+    "currency": "GBP",
+    "category": "Dining",
+    "status": "completed"
+  },
+  {
+    "id": "txn_056",
+    "customerId": "cust_004",
+    "date": "2026-02-11",
+    "merchant": "FOREIGN_TXN_ITA*TRENITALIA",
+    "amount": 186.0,
+    "currency": "GBP",
+    "category": "Travel",
+    "status": "flagged",
+    "merchantDisplayName": "Trenitalia (Italy)"
+  },
+  {
+    "id": "txn_057",
+    "customerId": "cust_004",
+    "date": "2026-02-10",
+    "merchant": "Gymbox Ltd",
+    "amount": 52.0,
+    "currency": "GBP",
+    "category": "Health & Fitness",
+    "status": "completed"
+  },
+  {
+    "id": "txn_058",
+    "customerId": "cust_004",
+    "date": "2026-02-09",
+    "merchant": "GOOGLE *Cloud",
+    "amount": 187.42,
+    "currency": "GBP",
+    "category": "Technology",
+    "status": "completed",
+    "merchantDisplayName": "Google Cloud Platform"
+  },
+  {
+    "id": "txn_059",
+    "customerId": "cust_004",
+    "date": "2026-02-08",
+    "merchant": "Uber *Trip",
+    "amount": 24.6,
+    "currency": "GBP",
+    "category": "Transport",
+    "status": "completed"
+  },
+  {
+    "id": "txn_060",
+    "customerId": "cust_004",
+    "date": "2026-02-07",
+    "merchant": "UNKNOWN_MERCHANT_7291",
+    "amount": 249.99,
+    "currency": "GBP",
+    "category": "Unknown",
+    "status": "flagged"
+  },
+  {
+    "id": "txn_061",
+    "customerId": "cust_004",
+    "date": "2026-02-06",
+    "merchant": "Sainsbury's",
+    "amount": 48.73,
+    "currency": "GBP",
+    "category": "Groceries",
+    "status": "completed"
+  },
+  {
+    "id": "txn_062",
+    "customerId": "cust_004",
+    "date": "2026-02-05",
+    "merchant": "Netflix.com",
+    "amount": 15.99,
+    "currency": "GBP",
+    "category": "Entertainment",
+    "status": "completed"
+  }
+]

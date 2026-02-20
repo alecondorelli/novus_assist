@@ -1,0 +1,112 @@
+[
+  {
+    "id": "prod_001",
+    "name": "Novus Savings Plus",
+    "type": "Savings Account",
+    "description": "A high-interest savings account with flexible access and no lock-in period.",
+    "interestRate": "4.75% AER (variable)",
+    "monthlyFee": 0,
+    "features": [
+      "4.75% AER on balances up to £85,000",
+      "Instant access — withdraw anytime",
+      "No minimum deposit",
+      "FSCS protected up to £85,000",
+      "Set savings goals with round-up feature"
+    ],
+    "eligibility": [
+      "UK resident aged 18+",
+      "Must hold a Novus current account"
+    ],
+    "bestFor": "Customers who want competitive interest with full flexibility"
+  },
+  {
+    "id": "prod_002",
+    "name": "Novus Fixed Saver",
+    "type": "Fixed-Term Savings",
+    "description": "Lock in a guaranteed rate for 12 months and earn more on your savings.",
+    "interestRate": "5.20% AER (fixed for 12 months)",
+    "monthlyFee": 0,
+    "features": [
+      "5.20% guaranteed rate for 12 months",
+      "Minimum deposit £1,000",
+      "FSCS protected up to £85,000",
+      "Interest paid monthly or at maturity",
+      "Auto-renew or withdraw at end of term"
+    ],
+    "eligibility": [
+      "UK resident aged 18+",
+      "Minimum deposit of £1,000",
+      "Must hold a Novus current account"
+    ],
+    "bestFor": "Customers who can lock away savings for a year and want a guaranteed return"
+  },
+  {
+    "id": "prod_003",
+    "name": "Novus Rewards Credit Card",
+    "type": "Credit Card",
+    "description": "Earn cashback on everyday spending with no annual fee.",
+    "interestRate": "22.9% APR (representative)",
+    "monthlyFee": 0,
+    "creditLimit": "£1,000 – £15,000 (subject to assessment)",
+    "features": [
+      "1% cashback on all purchases",
+      "2% cashback on groceries and dining",
+      "No annual fee",
+      "0% interest on purchases for first 3 months",
+      "Contactless and Apple Pay / Google Pay",
+      "Real-time spending notifications",
+      "Freeze card instantly via app"
+    ],
+    "eligibility": [
+      "UK resident aged 18+",
+      "Good credit history",
+      "Minimum income £15,000 per year"
+    ],
+    "bestFor": "Regular spenders who want to earn rewards on everyday purchases"
+  },
+  {
+    "id": "prod_004",
+    "name": "Novus Invest",
+    "type": "Investment Account",
+    "description": "A simple, low-cost stocks and shares ISA managed by experts.",
+    "interestRate": "N/A (returns depend on market performance)",
+    "monthlyFee": 3.99,
+    "features": [
+      "Tax-free ISA wrapper (up to £20,000/year)",
+      "Choose from 3 risk profiles: Cautious, Balanced, Growth",
+      "Professionally managed diversified portfolios",
+      "No trading fees",
+      "Start with as little as £1",
+      "Withdraw anytime (sold within 3 business days)"
+    ],
+    "eligibility": [
+      "UK resident aged 18+",
+      "Must complete suitability assessment",
+      "No minimum investment"
+    ],
+    "bestFor": "Customers new to investing who want a hands-off approach"
+  },
+  {
+    "id": "prod_005",
+    "name": "Novus Premium Account",
+    "type": "Current Account",
+    "description": "Our flagship current account with premium perks and priority support.",
+    "interestRate": "1.50% AER on balances up to £5,000",
+    "monthlyFee": 14.99,
+    "features": [
+      "1.50% interest on balances up to £5,000",
+      "Fee-free spending abroad in 150+ currencies",
+      "Free airport lounge access (4 per year)",
+      "Comprehensive travel and phone insurance",
+      "Priority customer support",
+      "Exclusive partner discounts",
+      "Metal card"
+    ],
+    "eligibility": [
+      "UK resident aged 18+",
+      "Minimum monthly deposit of £1,000",
+      "Pass credit and identity checks"
+    ],
+    "bestFor": "Frequent travellers and customers who want premium banking perks"
+  }
+]
