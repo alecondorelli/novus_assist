@@ -171,12 +171,12 @@ export default function App() {
 
       <HeroSection onScrollToChat={scrollToChat} />
 
-      <div ref={chatSectionRef} className="flex flex-col min-h-screen bg-mesh text-white">
+      <div ref={chatSectionRef} className="flex flex-col min-h-screen bg-chat text-white">
         <Header onClearChat={clearChat} hasMessages={hasUserSent} />
         <StatusBanner statuses={statuses} />
 
         <main className="flex-1 overflow-y-auto chat-scroll">
-          <div className="max-w-3xl mx-auto px-4 py-6 space-y-1">
+          <div className="max-w-[800px] mx-auto px-4 py-6 space-y-4">
             {messages.map((msg, i) => (
               <ChatMessage key={i} message={msg} />
             ))}
@@ -187,20 +187,20 @@ export default function App() {
         </main>
 
         {!hasUserSent && (
-          <div className="max-w-3xl mx-auto w-full px-4 pb-2">
+          <div className="max-w-[800px] mx-auto w-full px-4 pb-2">
             <SuggestionChips onSelect={sendMessage} />
           </div>
         )}
 
         <footer className="border-t border-white/5">
-          <div className="max-w-3xl mx-auto px-4 py-3">
+          <div className="max-w-[800px] mx-auto px-4 py-3">
             <ChatInput
               value={input}
               onChange={setInput}
               onSubmit={handleSubmit}
               disabled={isLoading}
             />
-            <p className="text-[11px] text-white/25 text-center mt-2">
+            <p className="text-[11px] text-white/20 text-center mt-2">
               This is a demo. No real financial data is used.
             </p>
           </div>

@@ -1,9 +1,9 @@
 const suggestions = [
-  { text: "I don't recognise a charge", icon: "🔍" },
-  { text: "I want to cancel my account", icon: "✕" },
-  { text: "Is this transaction fraudulent?", icon: "🛡" },
-  { text: "Help me choose a savings product", icon: "💰" },
-  { text: "Ich möchte mein Konto kündigen", icon: "🌍" },
+  "I don't recognise a charge",
+  "I want to cancel my account",
+  "Is this transaction fraudulent?",
+  "Help me choose a savings product",
+  "Ich möchte mein Konto kündigen",
 ];
 
 export default function SuggestionChips({ onSelect }) {
@@ -11,12 +11,11 @@ export default function SuggestionChips({ onSelect }) {
     <div className="flex flex-wrap gap-2 justify-center">
       {suggestions.map((s) => (
         <button
-          key={s.text}
-          onClick={() => onSelect(s.text)}
-          className="glass chip-glow text-left text-[12.5px] font-medium text-white/70 rounded-xl px-4 py-3 hover:text-white hover:border-teal/30 transition-all duration-200 cursor-pointer inline-flex items-center gap-2"
+          key={s}
+          onClick={() => onSelect(s)}
+          className="text-[13px] text-white/50 rounded-lg px-4 py-2.5 border border-white/10 hover:border-white/25 hover:text-white/70 transition-all duration-200 cursor-pointer"
         >
-          <span className="text-sm opacity-60">{s.icon}</span>
-          {s.text}
+          {s}
         </button>
       ))}
     </div>

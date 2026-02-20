@@ -1,3 +1,5 @@
+import LogoTicker from './LogoTicker';
+
 const features = [
   {
     icon: (
@@ -38,11 +40,6 @@ export default function HeroSection({ onScrollToChat }) {
     <section className="min-h-screen bg-white hero-grid relative flex flex-col items-center justify-center px-6">
       <div className="max-w-[1100px] mx-auto w-full flex flex-col items-center text-center">
 
-        <div className="inline-flex items-center gap-2 text-[13px] font-medium text-gray-400 px-4 py-1.5 rounded-full border border-gray-200 mb-10">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-          AI-Powered Customer Support
-        </div>
-
         <h1 className="text-[56px] leading-[1.08] tracking-[-0.02em] text-gray-900 mb-6">
           <span className="font-normal">Meet </span>
           <span className="font-bold">Novus Assistant</span>
@@ -52,7 +49,7 @@ export default function HeroSection({ onScrollToChat }) {
           Enterprise-grade AI for financial services customer interactions.
         </p>
 
-        <div className="flex items-center gap-12 sm:gap-16 mb-16">
+        <div className="flex items-center gap-12 sm:gap-16 mb-6">
           {features.map((f) => (
             <div key={f.label} className="flex flex-col items-center gap-2.5">
               <div className="text-gray-300">
@@ -62,6 +59,8 @@ export default function HeroSection({ onScrollToChat }) {
             </div>
           ))}
         </div>
+
+        <LogoTicker />
 
         <button
           onClick={onScrollToChat}
@@ -75,10 +74,8 @@ export default function HeroSection({ onScrollToChat }) {
 
       </div>
 
-      {/* Scroll transition: white → dark */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0A0E1A] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0F1419] pointer-events-none" />
 
-      {/* Animated scroll chevron */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-chevron">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-white/40">
           <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />

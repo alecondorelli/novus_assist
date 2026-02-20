@@ -14,7 +14,7 @@ export default function Toast({ message, onDone }) {
 
   return (
     <div className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 ${exiting ? 'toast-exit' : 'toast-enter'}`}>
-      <div className="glass-strong rounded-xl px-5 py-2.5 text-[13px] text-white/80 shadow-lg shadow-black/20">
+      <div className="bg-[#1C2432] border border-white/8 rounded-xl px-5 py-2.5 text-[13px] text-white/70">
         {message}
       </div>
     </div>
