@@ -162,6 +162,34 @@ When you take an action, clearly state it in your response using this format so 
 - When a product is recommended: include [ACTION:PRODUCT_RECOMMENDED] in your response
 - When escalating to human: include [ACTION:ESCALATED] in your response
 
+## MULTILINGUAL SUPPORT
+- You can detect and respond in the language the customer uses
+- If a customer writes in German, French, Spanish, Italian, or any other language, respond in that same language
+- Keep the same professional, warm tone regardless of language
+- Card data (merchant names, product names) should remain in English as they are proper nouns
+- Action tags and card tags must always remain in English format regardless of response language
+
+## SENTIMENT DETECTION
+At the END of every response, include a sentiment tag indicating the customer's emotional state:
+- [SENTIMENT:neutral] — Default, calm enquiry
+- [SENTIMENT:happy] — Customer is pleased, grateful, or satisfied
+- [SENTIMENT:frustrated] — Customer is annoyed, upset, or impatient
+- [SENTIMENT:worried] — Customer is anxious, concerned, or uncertain
+- [SENTIMENT:angry] — Customer is very upset, demanding, or hostile
+
+Choose the sentiment based on the customer's LAST message and the overall conversation tone. Always include exactly one sentiment tag per response.
+
+## ACTION CONFIRMATIONS
+When you perform a significant action (dispute initiated, card blocked, escalated, etc.), include an action confirmation block so the UI can display a confirmation card:
+[CONFIRM|{"title":"Card Blocked","detail":"Your card ending in ****4521 has been temporarily blocked. No further transactions will be authorised until you unblock it."}]
+[CONFIRM|{"title":"Dispute Initiated","detail":"We've opened a formal dispute for the £29.99 charge from AMZN MKTP. You'll receive an update within 5-10 business days."}]
+
+Rules:
+- Only include [CONFIRM] blocks when an action is actually taken (not when just offering options)
+- The title should be short (2-4 words)
+- The detail should explain what happened and any next steps
+- You can include one [CONFIRM] block per action taken
+
 ## RESPONSE STYLE
 - Keep responses concise but thorough — aim for 2-4 short paragraphs max
 - Use line breaks for readability
@@ -193,9 +221,31 @@ function parseCards(text) {
   return cards;
 }
 
+function parseSentiment(text) {
+  const match = text.match(/\[SENTIMENT:(\w+)\]/);
+  return match ? match[1] : 'neutral';
+}
+
+function parseConfirmations(text) {
+  const confirmations = [];
+  const regex = /\[CONFIRM\|\{[^}]*\}\]/g;
+  let match;
+  while ((match = regex.exec(text)) !== null) {
+    try {
+      const jsonStr = match[0].replace('[CONFIRM|', '').replace(/\]$/, '');
+      confirmations.push(JSON.parse(jsonStr));
+    } catch {
+      // skip malformed
+    }
+  }
+  return confirmations;
+}
+
 function cleanResponse(text) {
   let cleaned = text.replace(/\[CARD:(TRANSACTION|ACCOUNT|PRODUCT)\|[^\]]*\]/g, '');
   cleaned = cleaned.replace(/\[ACTION:\w+\]/g, '');
+  cleaned = cleaned.replace(/\[SENTIMENT:\w+\]/g, '');
+  cleaned = cleaned.replace(/\[CONFIRM\|\{[^}]*\}\]/g, '');
   cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
   return cleaned.trim();
 }
@@ -239,12 +289,16 @@ export async function chatHandler(req, res) {
     }
 
     const cards = parseCards(text);
+    const sentiment = parseSentiment(text);
+    const confirmations = parseConfirmations(text);
     const cleanedText = cleanResponse(text);
 
     res.json({
       response: cleanedText,
       actions,
       cards,
+      sentiment,
+      confirmations,
     });
   } catch (error) {
     console.error('Chat API error:', error);

@@ -1,6 +1,15 @@
 import TransactionCard from './cards/TransactionCard';
 import AccountCard from './cards/AccountCard';
 import ProductCard from './cards/ProductCard';
+import ActionConfirmationCard from './cards/ActionConfirmationCard';
+
+const sentimentEmojis = {
+  neutral: { emoji: '😊', label: 'Neutral' },
+  happy: { emoji: '😄', label: 'Happy' },
+  frustrated: { emoji: '😤', label: 'Frustrated' },
+  worried: { emoji: '😟', label: 'Worried' },
+  angry: { emoji: '😠', label: 'Angry' },
+};
 
 function renderCard(card, index) {
   switch (card.type) {
@@ -18,6 +27,9 @@ function renderCard(card, index) {
 export default function ChatMessage({ message }) {
   const isUser = message.role === 'user';
   const cards = message.cards || [];
+  const confirmations = message.confirmations || [];
+  const sentiment = message.sentiment;
+  const sentimentData = sentiment && sentimentEmojis[sentiment];
 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4 message-enter`}>
@@ -35,15 +47,32 @@ export default function ChatMessage({ message }) {
         </div>
       )}
       <div className="max-w-[80%] space-y-2">
-        <div
-          className={`rounded-2xl px-4 py-3 text-[13.5px] leading-relaxed whitespace-pre-wrap ${
-            isUser
-              ? 'bg-gradient-to-br from-cyan-600 to-teal-600 text-white rounded-br-md shadow-lg shadow-cyan-900/20'
-              : 'glass-strong text-slate-200 rounded-bl-md'
-          }`}
-        >
-          {message.content}
+        <div className="relative">
+          <div
+            className={`rounded-2xl px-4 py-3 text-[13.5px] leading-relaxed whitespace-pre-wrap ${
+              isUser
+                ? 'bg-gradient-to-br from-cyan-600 to-teal-600 text-white rounded-br-md shadow-lg shadow-cyan-900/20'
+                : 'glass-strong text-slate-200 rounded-bl-md'
+            }`}
+          >
+            {message.content}
+          </div>
+          {!isUser && sentimentData && (
+            <div
+              className="sentiment-indicator absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center"
+              title={sentimentData.label}
+            >
+              <span className="text-xs">{sentimentData.emoji}</span>
+            </div>
+          )}
         </div>
+        {confirmations.length > 0 && (
+          <div className="space-y-2 pl-0.5">
+            {confirmations.map((conf, i) => (
+              <ActionConfirmationCard key={`conf-${i}`} data={conf} />
+            ))}
+          </div>
+        )}
         {cards.length > 0 && (
           <div className="space-y-2 pl-0.5">
             {cards.map((card, i) => renderCard(card, i))}
