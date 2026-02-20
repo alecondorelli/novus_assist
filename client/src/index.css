@@ -24,6 +24,22 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hero section subtle dot grid */
+.hero-grid {
+  background-image: radial-gradient(circle, #e5e7eb 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+}
+
+/* Scroll chevron animation */
+@keyframes chevron-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(4px); opacity: 0.7; }
+}
+
+.scroll-chevron {
+  animation: chevron-bounce 2s ease-in-out infinite;
+}
+
 /* Gradient mesh background */
 .bg-mesh {
   background: #0A0E1A;
