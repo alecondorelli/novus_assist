@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import StatusBanner from './components/StatusBanner';
 import ChatMessage from './components/ChatMessage';
@@ -8,6 +9,8 @@ import ChatInput from './components/ChatInput';
 import HeroSection from './components/HeroSection';
 import Toast from './components/Toast';
 import RatingCard from './components/RatingCard';
+
+const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'));
 
 const WELCOME_MESSAGE = {
   role: 'assistant',
@@ -40,7 +43,7 @@ function saveState(messages, statuses, rating) {
   }
 }
 
-export default function App() {
+function ChatPage() {
   const savedState = useRef(loadSavedState());
   const [messages, setMessages] = useState(
     savedState.current?.messages || [WELCOME_MESSAGE]
@@ -207,5 +210,14 @@ export default function App() {
         </footer>
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<ChatPage />} />
+      <Route path="/analytics" element={<Suspense fallback={null}><AnalyticsDashboard /></Suspense>} />
+    </Routes>
   );
 }
