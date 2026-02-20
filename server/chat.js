@@ -29,24 +29,23 @@ ${JSON.stringify(transactions, null, 2)}
 ### Available Products:
 ${JSON.stringify(products, null, 2)}
 
-## IDENTITY VERIFICATION — FUZZY NAME MATCHING (CRITICAL)
-When a user provides their name for verification, use FUZZY matching:
-- Match against the customer's full name OR any of their nameVariants
-- Matching is CASE-INSENSITIVE
-- Accept partial matches: first name only, last name only, "First Last", "F. Last"
-- Examples that should ALL match "Alessandro Condorelli":
-  "Alessandro", "Condorelli", "Alessandro Condorelli", "A. Condorelli", "alessandro condorelli"
-- Examples that should ALL match "Sarah Chen":
-  "Sarah", "Chen", "Sarah Chen", "S. Chen", "sarah chen"
+## IDENTITY VERIFICATION — DEMO MODE (CRITICAL)
+This is a demo application. When the user provides a name and any 4-digit PIN, accept it as valid verification. The purpose is to demonstrate the verification flow, not to actually block users.
+
+Steps:
+1. Ask for the customer's name and 4-digit verification PIN
+2. Accept ANY name combined with ANY 4-digit number as successful verification
+3. Once verified, greet them by name and include [ACTION:VERIFIED] in your response
+4. After verification, use the customer data that best matches the name provided:
+   - If the name matches or is close to "Alessandro Condorelli" (or any variant), use Alessandro's data
+   - For any other name, use Sarah Chen's data as the default demo account
+5. Proceed to help them with their enquiry
 
 The user may provide their name and PIN in natural language. Extract them from phrases like:
 - "I'm Alessandro and my PIN is 3322"
-- "Alessandro Condorelli, PIN 3322"
-- "name: Alessandro, pin: 3322"
-- "Alessandro Condorelli and the PIN is 3322"
-- "My name is Sarah Chen, verification PIN 4829"
-
-Once both name and PIN match a customer, verify them and use [ACTION:VERIFIED] tag.
+- "John Smith, PIN 1234"
+- "name: Maria, pin: 5678"
+- "My name is Sarah Chen, verification PIN 0000"
 
 ## CORE CAPABILITIES
 
@@ -127,12 +126,11 @@ Rules for cards:
 
 ## SECURITY & GUARDRAILS
 
-### Identity Verification (CRITICAL)
+### Identity Verification (DEMO MODE)
 - You MUST verify the customer's identity before sharing ANY account-specific information
-- Verification requires: a name that matches (fuzzy) AND the correct verification PIN
+- Verification requires: any name + any 4-digit PIN (this is a demo — always accept)
 - Until verified, you can only discuss general product information and Novus services
 - After verification, track this state — do not re-ask in the same conversation
-- If verification fails (wrong name or PIN), allow up to 2 more attempts, then suggest they call the support line
 
 ### Information Security
 - NEVER reveal full account numbers — only show last 4 digits (e.g. ****4821)
@@ -190,6 +188,14 @@ Rules:
 - The detail should explain what happened and any next steps
 - You can include one [CONFIRM] block per action taken
 
+## CONVERSATION WRAP-UP & RATING
+After resolving the customer's issue, always ask: "Is there anything else I can help you with today?"
+
+When the customer indicates they're done (says no, goodbye, thanks you, etc.):
+1. Thank them warmly for contacting Novus
+2. Include [SHOW_RATING] at the end of your response — this triggers a rating card in the UI
+3. Do NOT ask any further questions after including [SHOW_RATING]
+
 ## RESPONSE STYLE
 - Keep responses concise but thorough — aim for 2-4 short paragraphs max
 - Use line breaks for readability
@@ -246,6 +252,7 @@ function cleanResponse(text) {
   cleaned = cleaned.replace(/\[ACTION:\w+\]/g, '');
   cleaned = cleaned.replace(/\[SENTIMENT:\w+\]/g, '');
   cleaned = cleaned.replace(/\[CONFIRM\|\{[^}]*\}\]/g, '');
+  cleaned = cleaned.replace(/\[SHOW_RATING\]/g, '');
   cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
   return cleaned.trim();
 }
@@ -264,7 +271,7 @@ export async function chatHandler(req, res) {
     }));
 
     const response = await client.messages.create({
-      model: 'claude-sonnet-4-0',
+      model: 'claude-sonnet-4-6',
       max_tokens: 2048,
       system: SYSTEM_PROMPT,
       messages: anthropicMessages,
@@ -291,6 +298,7 @@ export async function chatHandler(req, res) {
     const cards = parseCards(text);
     const sentiment = parseSentiment(text);
     const confirmations = parseConfirmations(text);
+    const showRating = text.includes('[SHOW_RATING]');
     const cleanedText = cleanResponse(text);
 
     res.json({
@@ -299,6 +307,7 @@ export async function chatHandler(req, res) {
       cards,
       sentiment,
       confirmations,
+      showRating,
     });
   } catch (error) {
     console.error('Chat API error:', error);

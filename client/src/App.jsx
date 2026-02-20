@@ -5,9 +5,9 @@ import ChatMessage from './components/ChatMessage';
 import TypingIndicator from './components/TypingIndicator';
 import SuggestionChips from './components/SuggestionChips';
 import ChatInput from './components/ChatInput';
-import DemoCredentials from './components/DemoCredentials';
 import HeroSection from './components/HeroSection';
 import Toast from './components/Toast';
+import RatingCard from './components/RatingCard';
 
 const WELCOME_MESSAGE = {
   role: 'assistant',
@@ -32,9 +32,9 @@ function loadSavedState() {
   return null;
 }
 
-function saveState(messages, statuses) {
+function saveState(messages, statuses, rating) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ messages, statuses }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ messages, statuses, rating }));
   } catch {
     // ignore
   }
@@ -50,6 +50,8 @@ export default function App() {
   const [statuses, setStatuses] = useState(
     savedState.current?.statuses || [{ type: 'unverified', label: 'Unverified' }]
   );
+  const [showRating, setShowRating] = useState(false);
+  const [rating, setRating] = useState(savedState.current?.rating || null);
   const [toast, setToast] = useState(
     savedState.current ? 'Welcome back! Your conversation has been restored.' : null
   );
@@ -59,13 +61,13 @@ export default function App() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isLoading]);
+  }, [messages, isLoading, showRating]);
 
   useEffect(() => {
     if (messages.length > 1) {
-      saveState(messages, statuses);
+      saveState(messages, statuses, rating);
     }
-  }, [messages, statuses]);
+  }, [messages, statuses, rating]);
 
   const scrollToChat = useCallback(() => {
     chatSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -74,8 +76,16 @@ export default function App() {
   function clearChat() {
     setMessages([WELCOME_MESSAGE]);
     setStatuses([{ type: 'unverified', label: 'Unverified' }]);
+    setShowRating(false);
+    setRating(null);
     localStorage.removeItem(STORAGE_KEY);
     setToast('Conversation cleared.');
+  }
+
+  function handleRatingSubmit({ rating: stars, feedback }) {
+    const ratingData = { stars, feedback, timestamp: new Date().toISOString() };
+    setRating(ratingData);
+    setShowRating(false);
   }
 
   async function sendMessage(text) {
@@ -112,10 +122,13 @@ export default function App() {
           role: 'assistant',
           content: data.response,
           cards: data.cards || [],
-          sentiment: data.sentiment,
           confirmations: data.confirmations || [],
         },
       ]);
+
+      if (data.showRating) {
+        setShowRating(true);
+      }
 
       if (data.actions?.length) {
         setStatuses((prev) => {
@@ -128,8 +141,6 @@ export default function App() {
               const idx = newStatuses.findIndex((s) => s.type === 'unverified');
               if (idx !== -1) newStatuses.splice(idx, 1);
               newStatuses.unshift({ type: 'verified', label: 'Identity Verified' });
-            } else if (!newStatuses.some((s) => s.type === action.type)) {
-              newStatuses.push({ type: action.type, label: action.label });
             }
           }
           return newStatuses;
@@ -163,7 +174,6 @@ export default function App() {
       <div ref={chatSectionRef} className="flex flex-col min-h-screen bg-mesh text-white">
         <Header onClearChat={clearChat} hasMessages={hasUserSent} />
         <StatusBanner statuses={statuses} />
-        <DemoCredentials />
 
         <main className="flex-1 overflow-y-auto chat-scroll">
           <div className="max-w-3xl mx-auto px-4 py-6 space-y-1">
@@ -171,6 +181,7 @@ export default function App() {
               <ChatMessage key={i} message={msg} />
             ))}
             {isLoading && <TypingIndicator />}
+            {showRating && !rating && <RatingCard onSubmit={handleRatingSubmit} />}
             <div ref={messagesEndRef} />
           </div>
         </main>

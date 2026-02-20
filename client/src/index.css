@@ -139,13 +139,14 @@ html {
 .toast-enter { animation: toast-in 0.3s ease-out; }
 .toast-exit { animation: toast-out 0.3s ease-in forwards; }
 
-/* Sentiment indicator */
-@keyframes sentiment-fade {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+/* Rating checkmark */
+@keyframes check-pop {
+  0% { opacity: 0; transform: scale(0.5); }
+  70% { transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-.sentiment-indicator { animation: sentiment-fade 0.3s ease-out; }
+.rating-check { animation: check-pop 0.4s ease-out; }
 
 /* Status badge animation */
 @keyframes status-pulse {
